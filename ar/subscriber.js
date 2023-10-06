@@ -23,9 +23,10 @@ const runConsumer = async () => {
       // Produce the result back to Kafka on topic sub_akn
       const producer = kafka.producer();
       await producer.connect();
+      // Givce the result back to Kafka      
       await producer.send({
         topic: 'sub_akn',
-        messages: [{ value: JSON.stringify({ok: "ciao"}) }],
+        messages: [{ value: JSON.stringify(result) }],
       });
       await producer.disconnect();
     },
